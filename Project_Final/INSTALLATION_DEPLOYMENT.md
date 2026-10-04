@@ -22,10 +22,28 @@ py -3.11 -m venv .venv
 .\run_services.ps1
 ```
 
-Streamlit: http://localhost:8501  
+Streamlit: http://localhost:8501
 API docs: http://localhost:8000/docs
 
 Stop each service with `Ctrl+C` in its terminal.
+
+## Run (macOS)
+
+This workspace includes a macOS launcher. It starts both services and stops the API
+when you press `Ctrl+C`.
+
+```zsh
+chmod +x run_services_macos.sh
+./run_services_macos.sh
+```
+
+The launcher uses the repository-level Python environment at `../.venv`. This
+keeps notebooks and the demo on the same default VS Code interpreter. To use
+another environment, set `PROJECT_FINAL_PYTHON` to its `bin/python` path:
+
+```zsh
+PROJECT_FINAL_PYTHON=/absolute/path/to/venv/bin/python ./run_services_macos.sh
+```
 
 ## Generate the Model (On Demand)
 

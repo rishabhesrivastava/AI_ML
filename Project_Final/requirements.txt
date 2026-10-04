@@ -1,6 +1,7 @@
 streamlit>=1.36
 pandas>=2.0
-scikit-learn>=1.3
+# Match the version used to serialize loan_model_artifacts.joblib.
+scikit-learn==1.7.2
 numpy>=1.24
 matplotlib>=3.7
 seaborn>=0.12

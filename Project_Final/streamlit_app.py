@@ -26,74 +26,74 @@ st.markdown(
     '''
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
-    
+
     html, body, [class*="css"] {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         color: #767676;
         background-color: #F3F4F6;
     }
-    
+
     .stApp {
         background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
     }
-    
+
     .block-container {
         background: #F3F4F6;
     }
-    
+
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Playfair Display', serif;
         color: #767676;
     }
-    
+
     p, span, div, label, li, td, th {
         color: #767676;
     }
-    
+
     [data-testid="stForm"] {
         background: #FFFFFF;
     }
-    
+
     [data-testid="stMetric"] {
         background: #FFFFFF;
     }
-    
+
     [data-testid="stSidebar"] {
         background: #FFFFFF;
     }
-    
+
     .streamlit-expanderHeader,
     .streamlit-expanderContent {
         background: #FFFFFF;
         color: #767676;
     }
-    
+
     .stAlert {
         background: #FFFFFF;
     }
-    
+
     .stDataFrame {
         background: #FFFFFF;
     }
-    
+
     .stJson {
         background: #FFFFFF;
         color: #767676;
     }
-    
+
     .stTabs [data-baseweb="tab"] {
         background: #FFFFFF;
         color: #767676;
     }
-    
+
     .stCaption, .stHelpText {
         color: #767676;
     }
-    
+
     [data-testid="stMetric"] label {
         color: #767676;
     }
-    
+
     [data-testid="stMetricValue"] {
         color: #767676;
     }
@@ -428,18 +428,18 @@ def risk_band(probability):
 with st.sidebar:
     st.markdown("## 🏦 Loan Risk System")
     st.markdown("---")
-    
+
     st.markdown("### System Status")
     st.success("✅ All systems operational")
-    
+
     st.markdown("### Model Information")
     st.info(f"**Active Model:** {DEFAULT_MODEL_NAME}")
-    
+
     selected_metrics = RESULTS[DEFAULT_MODEL_NAME]
     st.metric("Model Recall", f'{selected_metrics["recall"] * 100:.1f}%')
     st.metric("Model F1-Score", f'{selected_metrics["f1"]:.3f}')
     st.metric("Model AUC-ROC", f'{selected_metrics["auc"]:.3f}')
-    
+
     st.markdown("---")
     st.caption("© 2024 Bank Risk Assessment System")
     st.caption("Internal Use Only")
@@ -492,7 +492,7 @@ with tab1:
         # Quick test scenarios (outside form)
         st.markdown("### 🎯 Quick Test Scenarios")
         col1, col2, col3 = st.columns(3)
-    
+
         with col1:
             if st.button("🟢 Low Risk Profile", key="low_risk"):
                 st.info("Low Risk Profile: High income, excellent credit, stable employment, low DTI")
@@ -507,7 +507,7 @@ with tab1:
                     "Education": "Master's",
                     "Employment": "Full-time"
                 })
-    
+
         with col2:
             if st.button("🟡 Moderate Risk Profile", key="moderate_risk"):
                 st.info("Moderate Risk Profile: Average income, fair credit, moderate DTI")
@@ -522,7 +522,7 @@ with tab1:
                     "Education": "Bachelor's",
                     "Employment": "Full-time"
                 })
-    
+
         with col3:
             if st.button("🔴 High Risk Profile", key="high_risk"):
                 st.info("High Risk Profile: Low income, poor credit, high DTI, unstable employment")
@@ -584,9 +584,9 @@ with tab1:
             # Main result display
             st.markdown("---")
             st.markdown("## Risk Assessment Result")
-        
+
             col1, col2 = st.columns([2, 1])
-        
+
             with col1:
                 st.markdown(
                     f'<div class="result" style="border-color: {color};">'
@@ -595,7 +595,7 @@ with tab1:
                     f'<p style="margin-top: 0.5rem; font-size: 0.95rem;">{recommendation}</p></div>',
                     unsafe_allow_html=True,
                 )
-        
+
             with col2:
                 st.metric("Confidence Level", f"{(1 - abs(probability - 0.5) * 2) * 100:.1f}%")
                 st.metric("Loan-to-Income", f"{loan_amount / income:.2f}x")
@@ -603,7 +603,7 @@ with tab1:
             # Additional metrics
             st.markdown("### 📊 Detailed Analysis")
             col1, col2, col3, col4 = st.columns(4)
-        
+
             col1.metric("Credit Score", f"{credit_score}")
             col2.metric("DTI Ratio", f"{dti_ratio:.2%}")
             col3.metric("Employment Stability", f"{months_employed / 12:.1f} years")
@@ -612,7 +612,7 @@ with tab1:
             # Risk factors analysis
             st.markdown("### ⚠️ Risk Factors")
             risk_factors = []
-        
+
             if credit_score < 600:
                 risk_factors.append("Low credit score")
             if dti_ratio > 0.5:
@@ -623,7 +623,7 @@ with tab1:
                 risk_factors.append("High loan-to-income ratio")
             if has_cosigner == "No" and loan_amount > 100000:
                 risk_factors.append("Large loan without co-signer")
-        
+
             if risk_factors:
                 for factor in risk_factors:
                     st.warning(f"⚠️ {factor}")
@@ -859,14 +859,11 @@ def render_batch_tab():
                                 # Scrollable table-style grid with a real View button in the Action column.
                                 # Native st.dataframe cannot host clickable buttons inside cells, so this
                                 # keeps the table compact while giving every record its own working action.
-                                formatted_df = results_df[display_columns].copy()
-                                for row_index in formatted_df.index:
-                                    for column in display_columns:
-                                        formatted_df.at[row_index, column] = format_batch_value(
-                                            results_df.loc[row_index], column
-                                        )
-
-                                grid_height = min(620, max(260, 52 + min(len(formatted_df), 12) * 50))
+                                # Values are formatted while each grid cell is rendered below.  Do
+                                # not write formatted strings back into a typed DataFrame first:
+                                # modern pandas rejects assigning values such as "45" to an int64
+                                # column, which previously prevented valid CSV uploads from loading.
+                                grid_height = min(620, max(260, 52 + min(len(results_df), 12) * 50))
                                 # Keep every column readable instead of squeezing all columns into the
                                 # viewport.  The bordered grid itself scrolls horizontally when more
                                 # columns are selected.
