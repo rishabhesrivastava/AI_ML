@@ -1,0 +1,62 @@
+# Python bytecode, virtual environments, and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Jupyter-generated state
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Project-generated model artifacts
+Project_Final/loan_model_artifacts.joblib
+
+# Local-only datasets and archives larger than the repository's 10 MB limit
+Project_Final/Loan_default.csv
+TextMining/Mini_Project/Goodreadss Books.csv
+TextMining/Mini_Project/2025AIML049/Goodreadss Books.csv
+TextMining/Mini_Project/2025AIML049_main/Goodreadss Books.csv
+TextMining/Mini_Project/Approach2/Goodreadss Books.csv
+TextMining/Mini_Project/Approach3/Goodreadss Books.csv
+TextMining/Mini_Project/2025AIML049_main/cleaned_books.csv
+TextMining/Mini_Project/Approach2/cleaned_books.csv
+TextMining/Mini_Project/Approach3/cleaned_books.csv
+classification/Assignment1/creditcard.csv.zip
+classification/Assignment4/Credit_card_data.csv
+data/local/
+artifacts/local/
+outputs/local/
+
+# Test, analysis, and tool output
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+*~
+~$*.docx
+~$*.xlsx
+~$*.pptx

@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Project_Final demo",
+      "type": "shell",
+      "command": "${workspaceFolder}/Project_Final/run_services_macos.sh",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Start JupyterLab",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/jupyter lab --notebook-dir=${workspaceFolder}",
+      "problemMatcher": [],
+      "isBackground": true
+    }
+  ]
+}
