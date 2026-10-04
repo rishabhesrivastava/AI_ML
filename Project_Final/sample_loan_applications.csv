@@ -1,0 +1,6 @@
+LoanID,Age,Income,LoanAmount,CreditScore,MonthsEmployed,NumCreditLines,InterestRate,LoanTerm,DTIRatio,Education,EmploymentType,MaritalStatus,HasMortgage,HasDependents,LoanPurpose,HasCoSigner
+l1,45,120000,50000,750,120,3,5.0,36,0.25,Master's,Full-time,Married,Yes,No,Home,Yes
+l2,35,82500,127500,574,60,2,13.5,36,0.5,Bachelor's,Full-time,Single,No,Yes,Business,No
+l3,22,25000,200000,350,3,1,22.0,60,0.85,High School,Unemployed,Single,No,Yes,Other,No
+l4,52,95000,80000,680,96,4,8.5,48,0.35,PhD,Self-employed,Married,Yes,Yes,Education,No
+l5,30,55000,45000,620,24,2,11.0,24,0.45,Bachelor's,Part-time,Divorced,No,No,Auto,Yes
